@@ -1,0 +1,8 @@
+nltk
+datasets
+transformers[torch]
+tokenizers
+evaluate
+rouge_score
+sentencepiece
+huggingface_hub
