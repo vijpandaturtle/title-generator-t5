@@ -60,7 +60,7 @@ data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 
 # Acquire the training data from Hugging Face
 dataset = load_dataset('csv', data_files=DATA_NAME)
-dataset = dataset.train_test_split(test_size=0.3)
+dataset = dataset['train'].train_test_split(test_size=0.3)
 
 prefix = "Please generate a title for this paper abstract : "
 
