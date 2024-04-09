@@ -3,13 +3,13 @@ import arxiv
 import csv
 import pandas as pd
 import datetime
-import uuid
+import random
 
-random_uuid = uuid.uuid4()
+num = random.random()
 
 search = arxiv.Search(
   query = "artificial intelligence",
-  max_results = 20000,
+  max_results = 100,
   sort_by = arxiv.SortCriterion.SubmittedDate
 )
 
@@ -17,10 +17,10 @@ search = arxiv.Search(
 results_list = []
 for result in search.results():
     results_list.append({
-        'title': result.title,
-        'summary': result.summary
+        'titles': result.title,
+        'abstracts': result.summary
 })
 
 # Create a DataFrame from the results
 df = pd.DataFrame(results_list)
-df.to_csv(f'./data/title_generator_dataset_v{}.csv'.format(random_uuid))
+df.to_csv(f'../data/title_generator_dataset_v_{num}.csv')

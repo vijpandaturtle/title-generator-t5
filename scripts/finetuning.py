@@ -15,11 +15,11 @@ nltk.download("punkt", quiet=True)
 def preprocess_function(examples):
     """Add prefix to the sentences, tokenize the text, and set the labels"""
     # The "inputs" are the tokenized answer:
-    inputs = [prefix + doc for doc in examples["summary"]]
+    inputs = [prefix + doc for doc in examples["abstracts"]]
     model_inputs = tokenizer(inputs, max_length=128, truncation=True)
 
     # The "labels" are the tokenized outputs:
-    labels = tokenizer(text_target=examples["title"], max_length=512, truncation=True)
+    labels = tokenizer(text_target=examples["titles"], max_length=512, truncation=True)
 
     model_inputs["labels"] = labels["input_ids"]
     return model_inputs
@@ -48,24 +48,24 @@ def compute_metrics(eval_preds):
     return result
 
 
-############### DATASET DETAILS ###############
+############### DATASET LOADING AND PREPROCESSING ###############
 
 # Load the tokenizer, model, and data collator
 MODEL_NAME = "google/flan-t5-base"
-DATA_NAME = "yahoo_answers_qa"
+DATA_NAME = "./data/arxiv_data_210930-054931.csv"
 
 tokenizer = T5Tokenizer.from_pretrained(MODEL_NAME)
 model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
 data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 
 # Acquire the training data from Hugging Face
-yahoo_answers_qa = load_dataset(DATA_NAME)
-yahoo_answers_qa = yahoo_answers_qa["train"].train_test_split(test_size=0.3)
+dataset = load_dataset('csv', data_files=DATA_NAME)
+dataset = dataset.train_test_split(test_size=0.3)
 
 prefix = "Please generate a title for this paper abstract : "
 
 # Map the preprocessing function across our dataset
-tokenized_dataset = yahoo_answers_qa.map(preprocess_function, batched=True)
+tokenized_dataset = dataset.map(preprocess_function, batched=True)
 
 ############### TRAINING PARAMETERS ###############
 
