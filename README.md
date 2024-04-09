@@ -30,4 +30,8 @@ python scripts/fetch_arxiv_data.py
 python scripts/finetuning.py
 ```
 
+### Sagemaker Deployment
+
+Run the "deployment/deployment_flow.ipynb" notebook to deploy the model to Sagemaker. 
+
 
