@@ -21,14 +21,14 @@ To get started with this project, follow these steps:
 ### Usage:
 
 1. Fetching data from arxiv
-```bash
-python scripts/fetch_arxiv_data.py
-```
+    ```bash
+    python scripts/fetch_arxiv_data.py
+    ```
 
 2. Fine-tuning the T5 model
-```bash
-python scripts/finetuning.py
-```
+    ```bash
+    python scripts/finetuning.py
+    ```
 
 ### Sagemaker Deployment
 
