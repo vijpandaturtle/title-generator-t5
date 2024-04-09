@@ -6,3 +6,4 @@ evaluate
 rouge_score
 sentencepiece
 huggingface_hub
+sagemaker
