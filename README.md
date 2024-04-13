@@ -34,4 +34,7 @@ To get started with this project, follow these steps:
 
 Run the "deployment/deployment_flow.ipynb" notebook to deploy the model to Sagemaker. 
 
-
+### References
+1. [Arxiv title abtracts dataset](https://www.kaggle.com/datasets/spsayakpaul/arxiv-paper-abstracts)
+2. [Deploy a sagemaker model](https://www.philschmid.de/deploy-flan-t5-sagemaker)
+3. [Fine-tune a T5 model](https://www.datacamp.com/tutorial/flan-t5-tutorial)
